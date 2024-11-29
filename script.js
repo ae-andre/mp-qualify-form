@@ -47,22 +47,39 @@ function renderStep() {
     // Update the question title
     formTitle.textContent = step.title;
 
-    // Clear and display the Yes/No buttons
-    if (step.options) {
+    // Clear and display buttons based on the current step
+    if (currentStep === "call-grt") {
+        formContent.innerHTML = `
+            <a href="https://www.grt.ca/en/about-grt/contact-us.aspx" target="_blank">
+                <button class="bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-blue-600 w-full">
+                    Contact GRT
+                </button>
+            </a>
+        `;
+    } else if (currentStep === "display-application") {
+        formContent.innerHTML = `
+            <a href="https://forms.sparelabs.com/forms?organizationId=1966c7f8-3e36-4320-b0d7-de0f7d8d4355&caseTypeKey=mobilityPlusEligibilityTemplate&formKey=MobilityPlusApplication" target="_blank">
+                <button class="bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-blue-600 w-full">
+                    Start Application
+                </button>
+            </a>
+        `;
+    } else if (step.options) {
+        // For "yes" and "no" options
         formContent.innerHTML = `
             <button 
-                class="bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-blue-600 mr-4 mb-2"
+                class="bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-blue-600 mr-4 w-full" 
                 onclick="handleAnswer('yes')">
                 Yes
             </button>
             <button 
-                class="bg-gray-500 text-white px-6 py-2 rounded-md hover:bg-gray-600"
+                class="bg-gray-500 text-white px-6 py-2 rounded-md hover:bg-gray-600 w-full" 
                 onclick="handleAnswer('no')">
                 No
             </button>
         `;
     } else {
-        // If no options, display a message or end step
+        // Fallback for no options (display plain text)
         formContent.innerHTML = `<p class="text-gray-700">${step.title}</p>`;
     }
 }
