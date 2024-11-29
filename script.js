@@ -1,4 +1,3 @@
-// Define the steps in the flowchart
 const steps = {
     start: {
         title: "Will you be completing the MobilityPlus Application for yourself?",
@@ -26,10 +25,9 @@ const steps = {
     }
 };
 
-// Current step in the flow
+
 let currentStep = "start";
 
-// Function to handle user answers and update the form
 function handleAnswer(answer) {
     const nextStep = steps[currentStep]?.options?.[answer];
     if (nextStep) {
@@ -38,16 +36,13 @@ function handleAnswer(answer) {
     }
 }
 
-// Function to render the current step
 function renderStep() {
     const step = steps[currentStep];
     const formTitle = document.getElementById("form-title");
     const formContent = document.getElementById("form-content");
 
-    // Update the question title
     formTitle.textContent = step.title;
 
-    // Clear and display buttons based on the current step
     if (currentStep === "call-grt") {
         formContent.innerHTML = `
             <a href="https://www.grt.ca/en/about-grt/contact-us.aspx" target="_blank">
@@ -65,7 +60,6 @@ function renderStep() {
             </a>
         `;
     } else if (step.options) {
-        // For "yes" and "no" options
         formContent.innerHTML = `
             <button 
                 class="bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-blue-600 mr-4 w-full" 
@@ -79,10 +73,8 @@ function renderStep() {
             </button>
         `;
     } else {
-        // Fallback for no options (display plain text)
         formContent.innerHTML = `<p class="text-gray-700">${step.title}</p>`;
     }
 }
 
-// Initial render
 renderStep();
