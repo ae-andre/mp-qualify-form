@@ -4,11 +4,11 @@ const steps = {
         options: { yes: "share-phone", no: "access-verification" }
     },
     "share-phone": {
-        title: "Do you share your phone number with anyone else?",
-        options: { yes: "call-grt", no: "display-application" }
+        title: "Do you have a Phone Number or Email that is <b>not</b> shared with anyone?",
+        options: { yes: "display-application", no: "call-grt" }
     },
     "access-verification": {
-        title: "Do you have access to the MobilityPlus applicant's phone for verification?",
+        title: "Do you have access to the Applicant's Phone or Email for Verification?",
         options: { yes: "applicant-phone-shared", no: "call-grt" }
     },
     "applicant-phone-shared": {
@@ -41,7 +41,7 @@ function renderStep() {
     const formTitle = document.getElementById("form-title");
     const formContent = document.getElementById("form-content");
 
-    formTitle.textContent = step.title;
+    formTitle.innerHTML = step.title;
 
     if (currentStep === "call-grt") {
         formContent.innerHTML = `
@@ -59,7 +59,8 @@ function renderStep() {
                 </button>
             </a>
         `;
-    } else if (step.options) {
+    } 
+    else if (step.options) {
         formContent.innerHTML = `
             <button 
                 class="bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-blue-600 mr-4 w-full" 
@@ -72,7 +73,8 @@ function renderStep() {
                 No
             </button>
         `;
-    } else {
+    } 
+    else {
         formContent.innerHTML = `<p class="text-gray-700">${step.title}</p>`;
     }
 }
