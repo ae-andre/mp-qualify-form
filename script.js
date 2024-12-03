@@ -16,7 +16,7 @@ const steps = {
         options: { yes: "call-grt", no: "display-application" }
     },
     "call-grt": {
-        title: "Please call or email GRT.",
+        title: "Please call or email GRT",
         options: null
     },
     "display-application": {
