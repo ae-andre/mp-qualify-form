@@ -46,7 +46,7 @@ function renderStep() {
     if (currentStep === "call-grt") {
         formContent.innerHTML = `
             <p class="text-gray-700 mb-4">${step.description}</p>
-            <a href="https://www.grt.ca/en/mobilityplus-application.pdf" target="_blank">
+            <a href="https://www.grt.ca/en/rider-information/resources/MobilityPLUS_Application_2022_FINAL_April_7_FINAL-access.pdf" target="_blank">
                 <button class="bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-blue-600 w-full">
                     Download Application PDF
                 </button>
