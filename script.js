@@ -4,7 +4,7 @@ const steps = {
         options: { self: "self-phone-shared", someone_else: "access-verification" }
     },
     "self-phone-shared": {
-        title: "Do you have a phone number or email address that is not shared with anyone else who uses MobilityPLUS or GRT Flex app?",
+        title: "Do you have a phone number or email address that is not shared with anyone else who uses MobilityPLUS or GRT flex app?",
         options: { yes: "display-application", no: "call-grt" }
     },
     "access-verification": {
@@ -12,12 +12,12 @@ const steps = {
         options: { yes: "applicant-phone-shared", no: "call-grt" }
     },
     "applicant-phone-shared": {
-        title: "Does the applicant share their phone number with anyone else who uses MobilityPLUS or GRT Flex app?",
+        title: "Does the applicant share their phone number with anyone else who uses MobilityPLUS or GRT flex app?",
         options: { yes: "call-grt", no: "display-application" }
     },
     "call-grt": {
-        title: "Please submit the application in-person or via mail.",
-        description: "Download and complete the MobilityPLUS application using the link below.",
+        title: "Please submit the application in-person or via mail",
+        description: "Download and complete the MobilityPLUS application using the link below",
         options: null
     },
     "display-application": {
@@ -48,7 +48,7 @@ function renderStep() {
             <p class="text-gray-700 mb-4">${step.description}</p>
             <a href="https://www.grt.ca/en/rider-information/resources/MobilityPLUS_Application_2022_FINAL_April_7_FINAL-access.pdf" target="_blank">
                 <button class="bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-blue-600 w-full">
-                    Download Application PDF
+                    Download application PDF
                 </button>
             </a>
         `;
@@ -56,7 +56,7 @@ function renderStep() {
         formContent.innerHTML = `
             <a href="https://forms.sparelabs.com/forms?organizationId=1966c7f8-3e36-4320-b0d7-de0f7d8d4355&caseTypeKey=mobilityPlusEligibilityTemplate&formKey=MobilityPlusApplication" target="_blank">
                 <button class="bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-blue-600 w-full">
-                    Start Application
+                    Start application
                 </button>
             </a>
         `;
@@ -66,12 +66,12 @@ function renderStep() {
                 <button 
                     class="bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-blue-600 mr-4 w-full" 
                     onclick="handleAnswer('self')">
-                    Applying for Myself
+                    Applying for myself
                 </button>
                 <button 
                     class="bg-gray-500 text-white px-6 py-2 rounded-md hover:bg-gray-600 w-full" 
                     onclick="handleAnswer('someone_else')">
-                    Applying for Someone Else
+                    Applying for someone else
                 </button>
             `;
         } else {
