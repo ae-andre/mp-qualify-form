@@ -1,22 +1,23 @@
 const steps = {
     start: {
-        title: "Will you be completing the MobilityPlus Application for yourself?",
-        options: { yes: "share-phone", no: "access-verification" }
+        title: "Are you completing the MobilityPLUS application for yourself or for someone else?",
+        options: { self: "self-phone-shared", someone_else: "access-verification" }
     },
-    "share-phone": {
-        title: "Do you have a Phone Number or Email that is <b>not</b> shared with anyone?",
+    "self-phone-shared": {
+        title: "Do you have a phone number or email address that is not shared with anyone else who uses MobilityPLUS or GRT Flex app?",
         options: { yes: "display-application", no: "call-grt" }
     },
     "access-verification": {
-        title: "Do you have access to the Applicant's Phone or Email for Verification?",
+        title: "Do you have access to the applicant's phone or email to receive a verification code?",
         options: { yes: "applicant-phone-shared", no: "call-grt" }
     },
     "applicant-phone-shared": {
-        title: "Does the applicant share their phone number with anyone else?",
+        title: "Does the applicant share their phone number with anyone else who uses MobilityPLUS or GRT Flex app?",
         options: { yes: "call-grt", no: "display-application" }
     },
     "call-grt": {
-        title: "Please call or email GRT",
+        title: "Please submit the application in-person or via mail.",
+        description: "Download and complete the MobilityPLUS application using the link below.",
         options: null
     },
     "display-application": {
@@ -24,7 +25,6 @@ const steps = {
         options: null
     }
 };
-
 
 let currentStep = "start";
 
@@ -45,9 +45,10 @@ function renderStep() {
 
     if (currentStep === "call-grt") {
         formContent.innerHTML = `
-            <a href="https://www.grt.ca/en/about-grt/contact-us.aspx" target="_blank">
+            <p class="text-gray-700 mb-4">${step.description}</p>
+            <a href="https://www.grt.ca/en/mobilityplus-application.pdf" target="_blank">
                 <button class="bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-blue-600 w-full">
-                    Contact GRT
+                    Download Application PDF
                 </button>
             </a>
         `;
@@ -59,22 +60,35 @@ function renderStep() {
                 </button>
             </a>
         `;
-    } 
-    else if (step.options) {
-        formContent.innerHTML = `
-            <button 
-                class="bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-blue-600 mr-4 w-full" 
-                onclick="handleAnswer('yes')">
-                Yes
-            </button>
-            <button 
-                class="bg-gray-500 text-white px-6 py-2 rounded-md hover:bg-gray-600 w-full" 
-                onclick="handleAnswer('no')">
-                No
-            </button>
-        `;
-    } 
-    else {
+    } else if (step.options) {
+        if (currentStep === "start") {
+            formContent.innerHTML = `
+                <button 
+                    class="bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-blue-600 mr-4 w-full" 
+                    onclick="handleAnswer('self')">
+                    Applying for Myself
+                </button>
+                <button 
+                    class="bg-gray-500 text-white px-6 py-2 rounded-md hover:bg-gray-600 w-full" 
+                    onclick="handleAnswer('someone_else')">
+                    Applying for Someone Else
+                </button>
+            `;
+        } else {
+            formContent.innerHTML = `
+                <button 
+                    class="bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-blue-600 mr-4 w-full" 
+                    onclick="handleAnswer('yes')">
+                    Yes
+                </button>
+                <button 
+                    class="bg-gray-500 text-white px-6 py-2 rounded-md hover:bg-gray-600 w-full" 
+                    onclick="handleAnswer('no')">
+                    No
+                </button>
+            `;
+        }
+    } else {
         formContent.innerHTML = `<p class="text-gray-700">${step.title}</p>`;
     }
 }
