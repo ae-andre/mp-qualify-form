@@ -8,7 +8,7 @@ const steps = {
         options: { yes: "display-application", no: "call-grt" }
     },
     "access-verification": {
-        title: "Do you have access to the applicant's phone or email to receive a verification code?",
+        title: "A verification code will be sent to the applicant's phone number or email address. Is the applicant present to receive the verification code?",
         options: { yes: "applicant-phone-shared", no: "call-grt" }
     },
     "applicant-phone-shared": {
